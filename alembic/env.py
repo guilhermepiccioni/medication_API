@@ -3,8 +3,9 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from alembic import context
 from dotenv import load_dotenv
-from app.models import models
+from app.database.database import Base
 import os
+
 
 load_dotenv()
 
@@ -13,7 +14,7 @@ config = context.config
 database_url = os.getenv("SQLALCHEMY_DATABASE_URL")
 config.set_main_option('sqlalchemy.url', database_url)
 fileConfig(config.config_file_name)
-target_metadata = models.Base.metadata
+target_metadata = Base.metadata
 
 
 def run_migrations_offline():
