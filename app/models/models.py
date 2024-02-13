@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from datetime import date
 from enum import Enum
-from sqlalchemy import Column, String, Date
+from sqlalchemy import Column, String, Date, Integer
 from app.database.database import Base
 from typing import Optional
 
@@ -11,13 +11,12 @@ class MedicationRequestStatus(str, Enum):
     completed = "completed"
 
 
-# Define SQLAlchemy model for MedicationRequest
 class MedicationRequest(Base):
     """Represents a medication request."""
 
     __tablename__ = "medication_requests"
 
-    id = Column(String, primary_key=True, index=True,
+    id = Column(Integer, primary_key=True, index=True,
                 doc="Unique identifier for the medication request.")
     patient_reference = Column(String,
                                doc="Reference to the patient for whom the medication is requested.")
@@ -32,7 +31,6 @@ class MedicationRequest(Base):
     status = Column(String, doc="Current status of the medication request.")
 
 
-# Pydantic models for request and response
 class MedicationRequestIn(BaseModel):
     """Represents the input model for creating or updating a medication request."""
     patient_reference: str
@@ -47,7 +45,7 @@ class MedicationRequestIn(BaseModel):
 
 class MedicationRequestOut(BaseModel):
     """Represents the output model for returning a medication request."""
-    id: str
+    id: int
     patient_reference: str
     clinician_reference: str
     medication_reference: str

@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from fastapi.openapi.utils import get_openapi
+
 from starlette.responses import HTMLResponse
 
 from app.api.routes.routes import router as medication_request_router
@@ -19,7 +21,8 @@ def home():
     <body>
         <h1>URL List</h1>
         <ul>
-            <li><a href="http://0.0.0.0:8000/medication_requests">Medication Requests</a></li>
+            <li><a href="/docs">API Documentation</a></li>
+            <li><a href="/redoc">ReDoc Documentation</a></li>
         </ul>
     </body>
     </html>
@@ -27,3 +30,18 @@ def home():
 
 
 app.include_router(medication_request_router)
+
+
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    openapi_schema = get_openapi(
+        title="FastAPI Medication Request API",
+        version="1.0.0",
+        routes=app.routes,
+    )
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+
+app.openapi = custom_openapi

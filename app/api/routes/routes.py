@@ -25,8 +25,8 @@ router = APIRouter()
 # Routes
 @router.post("/medication_requests/", response_model=MedicationRequestOut)
 def create_medication_request(
-        medication_request: MedicationRequestIn,
-        db: Session = Depends(get_db)
+    medication_request: MedicationRequestIn,
+    db: Session = Depends(get_db)
 ):
     """Create a new medication request in the database."""
     db_request = MedicationRequest(**medication_request.dict())
@@ -38,10 +38,10 @@ def create_medication_request(
 
 @router.get("/medication_requests/", response_model=List[MedicationRequestOut])
 def get_medication_requests(
-        status: str = None,
-        prescribed_date_start: str = None,
-        prescribed_date_end: str = None,
-        db: Session = Depends(get_db)
+    status: str = None,
+    prescribed_date_start: str = None,
+    prescribed_date_end: str = None,
+    db: Session = Depends(get_db)
 ):
     """Retrieve medication requests from the database based on optional filters."""
     query = db.query(MedicationRequest)
@@ -56,8 +56,8 @@ def get_medication_requests(
 
 @router.get("/medication_requests/{request_id}", response_model=MedicationRequestOut)
 def get_single_medication_request(
-        request_id: str = Path(..., description="The ID of the medication request to retrieve"),
-        db: Session = Depends(get_db)
+    request_id: str = Path(..., description="The ID of the medication request to retrieve"),
+    db: Session = Depends(get_db)
 ):
     """Retrieve a single medication request by its ID."""
     db_request = db.query(MedicationRequest).filter(MedicationRequest.id == request_id).first()
@@ -68,9 +68,9 @@ def get_single_medication_request(
 
 @router.patch("/medication_requests/{request_id}", response_model=MedicationRequestOut)
 def update_medication_request(
-        request_id: str,
-        medication_request: MedicationRequestIn,
-        db: Session = Depends(get_db)
+    request_id: str,
+    medication_request: MedicationRequestIn,
+    db: Session = Depends(get_db)
 ):
     """Update a medication request in the database."""
     db_request = db.query(MedicationRequest).filter(MedicationRequest.id == request_id).first()
@@ -82,4 +82,4 @@ def update_medication_request(
 
     db.commit()
     db.refresh(db_request)
-    return db
+    return db_request

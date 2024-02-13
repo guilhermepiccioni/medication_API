@@ -16,7 +16,8 @@ RUN apt-get update \
 COPY requirements.txt /app/
 
 # Install project dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt \
+    && pip install psycopg2-binary
 
 # Install Alembic
 RUN pip install alembic
