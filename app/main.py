@@ -14,10 +14,10 @@ def home():
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>URLs List</title>
+        <title>FastAPI</title>
     </head>
     <body>
-        <h1>Lista de URLs</h1>
+        <h1>URL List</h1>
         <ul>
             <li><a href="http://0.0.0.0:8000/medication_requests">Medication Requests</a></li>
         </ul>
