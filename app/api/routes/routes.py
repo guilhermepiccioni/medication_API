@@ -9,7 +9,6 @@ from app.models.models import MedicationRequestOut, MedicationRequestIn, Medicat
 router = APIRouter()
 
 
-# Dependency to get a database session
 def get_db():
     """Dependency to get a database session."""
     db = SessionLocal()
