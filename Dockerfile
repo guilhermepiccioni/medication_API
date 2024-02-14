@@ -20,7 +20,7 @@ RUN pip install --no-cache-dir -r requirements.txt \
     && pip install psycopg2-binary
 
 # Install Alembic
-RUN pip install alembic
+#RUN pip install alembic
 
 # Copy the source code into the container
 COPY . /app
@@ -29,7 +29,8 @@ COPY . /app
 EXPOSE 8000
 
 # Initialize alembic
-RUN rm -rf alembic && alembic init alembic
+#RUN rm -rf alembic && alembic init alembic
 
 # Upgrade the database
-CMD alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000
+#CMD alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000
+CMD uvicorn app.main:app --host 0.0.0.0 --port 8000

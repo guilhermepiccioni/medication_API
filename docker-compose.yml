@@ -11,6 +11,9 @@ services:
       postgresql:
         condition: service_healthy
     container_name: FastAPI_Medication
+    environment:
+      DB_HOST: postgresql
+
 
   postgresql:
     image: postgres:latest

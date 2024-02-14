@@ -1,8 +1,0 @@
-dyld: Library not loaded: @executable_path/../Python3
-  Referenced from: /Users/guilhermepiccioni/Library/Application Support/pypoetry/venv/bin/python3
-  Reason: image not found
-
-Traceback:
-
-  File "<stdin>", line 923, in main
-  File "<stdin>", line 562, in run

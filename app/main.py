@@ -4,8 +4,11 @@ from fastapi.openapi.utils import get_openapi
 from starlette.responses import HTMLResponse
 
 from app.api.routes.routes import router as medication_request_router
+from app.database.database import create_tables
 
 app = FastAPI()
+
+create_tables()
 
 
 @app.get("/", response_class=HTMLResponse)
